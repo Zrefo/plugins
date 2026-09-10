@@ -1,0 +1,8 @@
+# Adres serwera 1 (tam gdzie stoi discord-bot-api), BEZ ukośnika na końcu
+api:
+  base-url: "http://TWOJ_IP_SERWERA_1:3000"
+  api-key: "zmien_to_na_dlugi_losowy_klucz"
+
+# Co ile sekund plugin odpytuje API o nowe wiadomości z Discorda dla każdej gildii
+bridge:
+  poll-interval-seconds: 3
