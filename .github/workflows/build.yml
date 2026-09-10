@@ -1,0 +1,33 @@
+name: Build pluginy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ustaw Javę 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+
+      - name: Zbuduj PlayerStats
+        run: mvn -B clean package --file PlayerStats/pom.xml
+
+      - name: Zbuduj Guilds
+        run: mvn -B clean package --file Guilds/pom.xml
+
+      - name: Wrzuć gotowe .jar jako artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: pluginy-eme
+          path: |
+            PlayerStats/target/PlayerStats.jar
+            Guilds/target/Guilds.jar
